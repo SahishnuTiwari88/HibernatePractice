@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 27, 2017 10:47:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.Certificate" table="CERTIFICATE" schema="HR" 
+    optimistic-lock="version">
+        <id name="id" type="integer">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="40" />
+        </property>
+        <set name="persons" table="PERSON" 
+             inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CERTID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="com.Person" />
+        </set>
+    </class>
+</hibernate-mapping>
